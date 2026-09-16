@@ -98,14 +98,18 @@ a {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1rem 3rem;
+    padding: 1rem 2rem;
     background-color: var(--color-white);
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 .brand-logo img {
-    height: 2.75rem;
+    height: 4rem;
     object-fit: contain;
+    margin-top: -1rem;
 }
 
 .nav-links {
@@ -261,7 +265,7 @@ a {
 }
 
 .border-right {
-    border-right: 1px solid #E5E7EB;
+    border-right: var(--color-caramelo-oscuro) 3px solid;
 }
 
 .feature-item img {
@@ -290,26 +294,69 @@ a {
     gap: 2.5rem;
 }
 
+.section-title {
+    font-family: var(--font-complementaria);
+    font-size: 2.75rem;
+    line-height: 1.1;
+    color: var(--color-negro-pirata);
+}
+
+.divider {
+    font-size: 1.5rem;
+    color: var(--color-negro-pirata);
+    margin-top: -2rem;
+    margin-bottom: 1.5rem;
+}
+
 .catalog-info {
     width: 30%;
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
+    gap: 2.5rem;
 }
 
 .catalog-info .divider {
-    width: 3.5rem;
+    width: 15rem;
     height: 4px;
     background-color: var(--color-caramelo-oscuro);
     border-radius: 9999px;
+    margin-top: -0.5rem;
+    margin-bottom: -0.5rem;
 }
 
 .catalog-info p {
-    font-size: 0.9rem;
-    line-height: 1.5;
-    font-weight: 500;
+    font-size: 1.5rem; 
+    line-height: 1.3;
+    font-weight: 350;
+    color: var(--color-negro-pirata);
 }
 
+.catalog-info .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    gap: 1.25rem;
+    font-size: 2rem; 
+    padding: 1rem 2rem; 
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 9999px;
+    background-color: var(--color-caramelo-oscuro);
+    color: var(--color-white);
+    width: fit-content;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.catalog-info .btn-primary:hover {
+    opacity: 0.95;
+    transform: translateY(-2px);
+}
+
+.catalog-info .btn-primary svg {
+    width: 2rem; 
+    height: 2rem; 
+}
 .catalog-cards {
     width: 70%;
     display: grid;
@@ -345,12 +392,11 @@ a {
 }
 
 .card-body p {
-    font-size: 0.8rem;
+    font-size: 1rem;
     color: var(--color-gray-text);
     line-height: 1.4;
     font-weight: 400;
 }
-
 /* ==========================================================================
    7. NUESTRA HISTORIA
    ========================================================================== */
@@ -478,7 +524,10 @@ a {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 0.75rem; 
+    gap: 0.75rem;
+    background-color: var(--color-oro-hojaldre); 
+    color: var(--color-negro-pirata);
+    transition: background-color 0.3s ease, color 0.3s ease; 
 }
 
 .cta-card .btn-gold svg {
@@ -486,7 +535,10 @@ a {
     height: 2rem;         
     stroke-width: 2.5px;  
 }
-
+.cta-card .btn-gold:hover {
+    background-color: var(--color-oro-hojaldre-hover); 
+    color: var(--color-negro-pirata);
+}
 .watermark-cta {
     position: absolute;
     right: 7rem;
@@ -529,10 +581,9 @@ a {
     margin-bottom: 0.25rem;
 }
 
-/* Líneas divisorias verticales de color caramelo */
 .footer-col:nth-child(1),
 .footer-col:nth-child(3) {
-    border-right: 2px solid var(--color-caramelo-oscuro);
+    border-right: 2px solid var(--color-oro);
     padding-right: 2rem;
 }
 
