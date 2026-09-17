@@ -1,0 +1,440 @@
+/* ==========================================================================
+   VARIABLES Y CONFIGURACIÓN GLOBAL
+   ========================================================================== */
+:root {
+    --color-caramelo-oscuro: #C1560C;
+    --color-oro-hojaldre: #EBA342;
+    --color-arena-dulce: #FCBB63;
+    --color-negro-pirata: #000000;
+    --color-white: #FFFFFF;
+    
+    --font-principal: 'Pirata One', cursive, serif;
+    --font-complementaria: 'Lato', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-complementaria);
+    color: var(--color-negro-pirata);
+    background-color: var(--color-white);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* NAVBAR (IGUALADO A LANDING PAGE) */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    background-color: var(--color-white);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.brand-logo img {
+    height: 4rem;
+    object-fit: contain;
+    margin-top: -1rem;
+}
+
+.brand-title {
+    font-family: var(--font-principal);
+    font-size: 1.8rem;
+    color: var(--color-negro-pirata);
+}
+
+.nav-links {
+    display: flex;
+    gap: 1.75rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.nav-links a:hover {
+    color: var(--color-caramelo-oscuro);
+}
+
+.nav-links a.active {
+    color: var(--color-caramelo-oscuro);
+    font-weight: 700;
+    border-bottom: 2px solid var(--color-caramelo-oscuro);
+    padding-bottom: 0.2rem;
+}
+
+.btn-primary {
+    background-color: var(--color-caramelo-oscuro);
+    color: var(--color-white);
+    padding: 0.6rem 1.5rem;
+    border-radius: 9999px;
+    font-weight: 700;
+    font-size: 0.875rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-primary:hover {
+    opacity: 0.9;
+}
+/* SECCIÓN VISTA PREVIA (ARENA DULCE) */
+.catalog-preview-section {
+    background-color: var(--color-arena-dulce);
+    padding: 3.5rem 2rem;
+}
+
+.preview-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 2.5rem;
+    align-items: flex-start;
+}
+
+.preview-info {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.preview-title {
+    font-family: var(--font-complementaria);
+    font-size: 2.75rem;
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--color-negro-pirata);
+}
+
+.preview-divider {
+    width: 15rem;
+    height: 4px;
+    background-color: var(--color-caramelo-oscuro);
+    border-radius: 9999px;
+    margin-top: -0.5rem;
+    margin-bottom: -0.5rem;
+}
+
+.preview-text {
+    font-size: 1.1rem;
+    line-height: 1.4;
+    font-weight: 400;
+    color: var(--color-negro-pirata);
+}
+
+.preview-cards {
+    width: 70%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+}
+
+.preview-card {
+    background-color: var(--color-white);
+    border-radius: 1rem 1rem 0.5rem 0.5rem;
+    overflow: hidden;
+    text-align: center;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.preview-card img {
+    width: 100%;
+    height: 12rem;
+    object-fit: cover;
+}
+
+.card-body {
+    padding: 1.25rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.card-body h3 {
+    font-family: var(--font-principal);
+    font-size: 1.5rem;
+    color: var(--color-negro-pirata);
+}
+
+.card-body p {
+    font-size: 0.95rem;
+    color: var(--color-gray-text);
+    line-height: 1.4;
+    font-weight: 400;
+}
+
+/* TÍTULO CENTRAL */
+.catalog-main-heading {
+    text-align: center;
+    padding: 2.5rem 0 1rem 0;
+}
+
+.catalog-main-heading h2 {
+    font-family: var(--font-complementaria);
+    font-size: 3.5rem;
+}
+
+/* SECCIÓN CATÁLOGO COMPLETO (TERRACOTA) */
+.catalog-full-section {
+    background-color: var(--color-caramelo-oscuro);
+    position: relative;
+    padding-bottom: 4rem;
+}
+
+.catalog-wave {
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.catalog-wave svg {
+    width: 100%;
+    height: 3.5rem;
+}
+
+.wave-fill-catalog {
+    fill: var(--color-white);
+}
+
+.catalog-content-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+}
+
+.category-title {
+    font-family: var(--font-principal);
+    font-size: 2.2rem;
+    color: var(--color-white);
+    margin-bottom: 1.5rem;
+    font-weight: normal;
+}
+
+.items-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+}
+
+.item-card {
+    background-color: var(--color-white);
+    border-radius: 1rem;
+    overflow: hidden;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.item-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.item-info {
+    padding: 1rem;
+}
+
+.item-info h4 {
+    font-family: var(--font-principal);
+    font-size: 1.3rem;
+    margin-bottom: 0.25rem;
+}
+
+.item-info .price {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #333;
+}
+
+.category-divider {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+    margin: 3rem 0;
+}
+
+/* FOOTER */
+.footer {
+    background-color: var(--color-negro-pirata);
+    color: var(--color-white);
+    padding: 3rem 2rem;
+    font-size: 0.85rem;
+}
+
+.footer-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+}
+
+.footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.footer-logo {
+    height: 2rem;
+}
+
+.footer-title {
+    font-family: var(--font-principal);
+    font-size: 1.5rem;
+}
+
+.footer-slogan {
+    margin-top: 0.5rem;
+    opacity: 0.8;
+}
+
+.footer-col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.footer-col h4 {
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+}
+
+.footer-col a, .footer-col p {
+    opacity: 0.8;
+}
+
+.newsletter-form {
+    display: flex;
+    margin-top: 0.5rem;
+}
+
+.newsletter-form input {
+    padding: 0.4rem 0.6rem;
+    border: none;
+    border-radius: 4px 0 0 4px;
+    width: 80%;
+    font-size: 0.8rem;
+}
+
+.newsletter-form button {
+    background-color: var(--color-caramelo-oscuro);
+    color: var(--color-white);
+    border: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+}
+/* ==========================================================================
+   11. SECCIÓN CATÁLOGO EXTENDIDO (PÁGINA DE CATÁLOGO)
+   ========================================================================== */
+.catalog-heading-wrapper {
+    text-align: center;
+    background-color: var(--color-white);
+    padding: 3rem 1rem 1.5rem 1rem;
+}
+
+.catalog-main-title {
+    font-family: var(--font-principal);
+    font-size: 3.5rem;
+    color: var(--color-negro-pirata);
+    font-weight: 400;
+}
+
+.full-catalog-section {
+    background-color: var(--color-caramelo-oscuro);
+    position: relative;
+    padding-bottom: 5rem;
+}
+
+.catalog-wave-top {
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.catalog-wave-top svg {
+    width: 100%;
+    height: 3.5rem;
+}
+
+.catalog-wave-top .wave-path {
+    fill: var(--color-white);
+}
+
+.full-catalog-container {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+}
+
+.category-bullet-title {
+    font-family: var(--font-principal);
+    font-size: 2.25rem;
+    color: var(--color-white);
+    margin-bottom: 1.75rem;
+    font-weight: 400;
+}
+
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+}
+
+.category-item-card {
+    background-color: var(--color-white);
+    border-radius: 1rem;
+    overflow: hidden;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.category-item-card img {
+    width: 100%;
+    height: 12rem;
+    object-fit: cover;
+}
+
+.item-card-body {
+    padding: 1.25rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.item-card-body h4 {
+    font-family: var(--font-principal);
+    font-size: 1.4rem;
+    color: var(--color-negro-pirata);
+    font-weight: 400;
+}
+
+.item-card-body .item-price {
+    font-family: var(--font-complementaria);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--color-gray-text);
+}
+
+.category-line-separator {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    margin: 3.5rem 0;
+}
+
+/* Adaptación responsive para pantallas pequeñas */
+@media (max-width: 767px) {
+    .category-grid {
+        grid-template-columns: 1fr;
+    }
+}
