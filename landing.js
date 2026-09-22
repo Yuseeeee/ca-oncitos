@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Manejo del formulario de newsletter
+
     const newsletterForm = document.getElementById('newsletter-form');
     const newsletterEmail = document.getElementById('newsletter-email');
 
@@ -15,64 +15,91 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 2. Cambio automático de enlace activo según visibilidad en pantalla (Scrollspy)
     const navLinks = document.querySelectorAll('.nav-links a');
-    const sections = document.querySelectorAll('header.hero, section[id], footer[id]');
-    const navbar = document.querySelector('.navbar');
+    const esPaginaCatalogo = window.location.pathname.includes('catalogo.html');
 
-    function resaltarEnlaceActivo() {
-        const altoNavbar = navbar ? navbar.offsetHeight : 0;
-        const posicionScroll = window.scrollY;
-        const altoTotalPagina = document.documentElement.scrollHeight;
-        const altoVentana = window.innerHeight;
-
-        let seccionActivaId = '';
-
-        // Recorremos las secciones y evaluamos su posición dentro del área visible
-        sections.forEach((seccion) => {
-            const rect = seccion.getBoundingClientRect();
-            const idSeccion = seccion.getAttribute('id') || '';
-
-            // La sección se activa si su borde superior entra al área de lectura
-            // y su parte inferior aún sigue dentro de la pantalla
-            if (rect.top <= altoNavbar + 120 && rect.bottom >= altoNavbar + 60) {
-                seccionActivaId = idSeccion;
+    if (esPaginaCatalogo) {
+        navLinks.forEach((enlace) => {
+            const href = enlace.getAttribute('href');
+            if (href === 'catalogo.html') {
+                enlace.classList.add('active');
+            } else {
+                enlace.classList.remove('active');
             }
         });
+    } else {
+        const sections = document.querySelectorAll('header.hero, section[id], footer[id]');
+        const navbar = document.querySelector('.navbar');
 
-        // Evaluación especial del final de página:
-        const alFinalDePagina = (altoVentana + posicionScroll) >= (altoTotalPagina - 10);
-        if (alFinalDePagina) {
-            const footer = document.getElementById('contacto');
-            if (footer) {
-                const rectFooter = footer.getBoundingClientRect();
-                // Solo activa "Contacto" si el pie de página ya subió lo suficiente en pantalla
-                if (rectFooter.top <= altoVentana * 0.65) {
-                    seccionActivaId = 'contacto';
+        function resaltarEnlaceActivo() {
+            const altoNavbar = navbar ? navbar.offsetHeight : 0;
+            const posicionScroll = window.scrollY;
+            const altoTotalPagina = document.documentElement.scrollHeight;
+            const altoVentana = window.innerHeight;
+
+            let seccionActivaId = '';
+
+            sections.forEach((seccion) => {
+                const rect = seccion.getBoundingClientRect();
+                const idSeccion = seccion.getAttribute('id') || '';
+
+                if (rect.top <= altoNavbar + 120 && rect.bottom >= altoNavbar + 60) {
+                    seccionActivaId = idSeccion;
+                }
+            });
+
+            const alFinalDePagina = (altoVentana + posicionScroll) >= (altoTotalPagina - 10);
+            if (alFinalDePagina) {
+                const footer = document.getElementById('contacto');
+                if (footer) {
+                    const rectFooter = footer.getBoundingClientRect();
+                    if (rectFooter.top <= altoVentana * 0.65) {
+                        seccionActivaId = 'contacto';
+                    }
                 }
             }
-        }
 
-        // Si la pantalla está arriba de todo en la cabecera
-        if (!seccionActivaId && posicionScroll < 150) {
-            seccionActivaId = '#';
-        }
-
-        // Asignamos la clase active al enlace correspondiente
-        navLinks.forEach((enlace) => {
-            enlace.classList.remove('active');
-            const destinoHref = enlace.getAttribute('href');
-
-            if (
-                (destinoHref === '#' && seccionActivaId === '#') ||
-                (destinoHref === `#${seccionActivaId}`)
-            ) {
-                enlace.classList.add('active');
+            if (!seccionActivaId && posicionScroll < 150) {
+                seccionActivaId = '#';
             }
+
+            navLinks.forEach((enlace) => {
+                enlace.classList.remove('active');
+                const destinoHref = enlace.getAttribute('href');
+
+                if (
+                    (destinoHref === '#' && seccionActivaId === '#') ||
+                    (destinoHref === `#${seccionActivaId}`)
+                ) {
+                    enlace.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', resaltarEnlaceActivo);
+        resaltarEnlaceActivo();
+    }
+
+    const elementosARevelar = document.querySelectorAll('.reveal');
+
+    if (elementosARevelar.length > 0) {
+        const opciones = {
+            root: null,       
+            threshold: 0.15   
+        };
+
+        const observador = new IntersectionObserver((entradas, observer) => {
+            entradas.forEach((entrada) => {
+                if (entrada.isIntersecting) {
+                    entrada.target.classList.add('visible');
+                    observer.unobserve(entrada.target);
+                }
+            });
+        }, opciones);
+
+        elementosARevelar.forEach((elemento) => {
+            observador.observe(elemento);
         });
     }
 
-    // Escuchar el evento de desplazamiento y ejecutar al cargar
-    window.addEventListener('scroll', resaltarEnlaceActivo);
-    resaltarEnlaceActivo();
 });

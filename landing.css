@@ -741,3 +741,76 @@ a {
     flex-shrink: 0;
 }
 }
+/* ==========================================================================
+   ANIMACIONES Y EFECTOS INTERACTIVOS
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. TRANSICIONES PARA TARJETAS DE PRODUCTO (Efecto Elevación)
+   -------------------------------------------------------------------------- */
+.product-card,
+.preview-card,
+.category-item-card {
+    /* La propiedad 'transition' define la duración y suavidad del cambio.
+       Escuchamos cambios en 'transform' y 'box-shadow' durante 0.3 segundos. */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Estado al pasar el cursor (Hover) */
+.product-card:hover,
+.preview-card:hover,
+.category-item-card:hover {
+    /* translateY(-8px) mueve la tarjeta 8 píxeles hacia arriba */
+    transform: translateY(-8px);
+    /* Intensificamos la sombra para simular altura */
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* --------------------------------------------------------------------------
+   2. TRANSICIONES PARA BOTONES (Efecto de Pulso/Escala)
+   -------------------------------------------------------------------------- */
+.btn-primary,
+.btn-gold {
+    /* Agregamos transición suave a la propiedad transform */
+    transition: transform 0.2s ease, background-color 0.2s ease, opacity 0.2s ease;
+}
+
+.btn-primary:hover,
+.btn-gold:hover {
+    /* scale(1.04) aumenta el tamaño del botón un 4% */
+    transform: scale(1.04);
+}
+
+.btn-primary:active,
+.btn-gold:active {
+    /* scale(0.98) reduce levemente el botón al hacer clic */
+    transform: scale(0.98);
+}
+
+/* --------------------------------------------------------------------------
+   3. ANIMACIÓN DE ENTRADA (@keyframes fadeIn)
+   -------------------------------------------------------------------------- */
+/* @keyframes define la secuencia de movimiento paso a paso */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0; /* Totalmente transparente al inicio */
+        transform: translateY(20px); /* Desplazado 20px hacia abajo */
+    }
+    100% {
+        opacity: 1; /* Completamente visible */
+        transform: translateY(0); /* Posición original */
+    }
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    will-change: opacity, transform;
+}
+
+/* Estado activo: Cuando el usuario llega con el scroll, JavaScript añade .visible */
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
